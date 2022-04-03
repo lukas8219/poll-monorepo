@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  },
+  "name": "poll-monorepo",
+  "scripts": {
+    "start:compose": "npm run start:server & npm run start:web",
+    "start:web": "cd packages/web && npm run start:compose",
+    "start:server": "cd packages/server && npm run start:dev"
+  }
+}

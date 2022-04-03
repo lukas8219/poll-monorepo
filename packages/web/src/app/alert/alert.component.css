@@ -1,0 +1,33 @@
+.alert-box {
+    display: none;
+    position: fixed;
+    top: 10%;
+    width: 21.5vw;
+    height: 10vh;
+    background-color: white;
+    left: calc(50% - 10.75vw);
+    box-shadow: 0px 0px 10px red;
+  }
+  
+  .alert-box > button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 2%;
+  }
+  
+  .visible {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation-name: alert-animation;
+    animation-duration: 300ms;
+  }
+  
+  @keyframes alert-animation {
+    0% { top: 0% }
+    25% { top: 2.5% }
+    50% { top: 5% }
+    75% { top: 7.5% }
+    100% { top: 10%; } 
+  }

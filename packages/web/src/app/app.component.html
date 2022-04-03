@@ -1,0 +1,7 @@
+<app-alert></app-alert>
+<div class="login">
+  <app-login-page *ngIf="!authenticated"></app-login-page>
+</div>
+<div>
+  <app-main-page *ngIf="authenticated"></app-main-page>
+</div>

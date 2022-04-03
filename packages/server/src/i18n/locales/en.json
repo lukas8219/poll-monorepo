@@ -1,0 +1,14 @@
+{
+    "poll.create.subject.notEmpty": "Please insert a Subject for the Poll",
+    "poll.create.description.notEmpty":"Please, insert a Description for the Poll",
+    "poll.create.expiresAt.notNull": "Please, insert an Expiration Date",
+    "user.create.email.notEmpty":"Please, insert an email",
+    "user.create.email.invalid": "Please, insert a valid email",
+    "user.create.name.notEmpty":"Please, insert a name",
+    "user.create.password.notEmpty": "Please, insert a password",
+    "user.authenticate.email.notEmpty": "Please, insert a email to log in",
+    "user.authenticate.password.notEmpty": "Please, insert a password to log in",
+    "user.not.found.or.password.wrong":"Wrong password or User not found!",
+    "user.already.exists":"There's already a user with this email",
+    "poll.not.found": "Poll not found"
+}

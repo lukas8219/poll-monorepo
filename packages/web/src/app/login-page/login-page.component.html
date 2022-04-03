@@ -1,0 +1,21 @@
+<div class="container">
+    <span class="title"> Login </span>
+    <form class="form" [formGroup]="loginForm" (ngSubmit)="logIn()">
+      <div class="form-input">
+        <input formControlName="email" [ngClass]="getClassName('text-input', 'email')" type="email" placeholder="Insira seu email" />
+        <label for="email" *ngIf="hasErrors('email')"> {{ getError('email') }} </label>
+      </div>
+      <div class="form-input">
+        <input formControlName="password" [ngClass]="getClassName('text-input', 'password')" type="password" placeholder="Insira sua senha" />
+        <label for="password" *ngIf="hasErrors('password')"> {{ getError('password') }} </label>
+      </div>
+      <button class="login-input" type="submit"><span>Entrar</span></button>
+      <button class="forgot-password">
+        <u>Esqueci a Senha</u>
+      </button>
+      <button class="google-login" type="submit">
+        <span>Entre com sua Conta Google</span>
+      </button>
+    </form>
+  </div>
+  

@@ -1,0 +1,104 @@
+.form {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    border-radius: 5px;
+    height: 40vh;
+    width: 20vw;
+    justify-content: center;
+    align-self: center;
+    box-shadow: 0px 1px 3px 1px white;
+    padding: 15px
+  }
+
+  @media (max-device-width: 505px) and (max-device-height: 505px) {
+    .form {
+      height: 50vh;
+      width: 50vw;
+    }
+  }
+  
+  .title {
+    text-align: center;
+    color: white;
+    font-weight: 600;
+    font-size: 24px;
+  }
+  
+  .text-input {
+    background: rgba(196, 196, 196, 0.5);
+  }
+  
+  input,
+  button {
+    border-radius: 8px;
+    border-color: transparent;
+    height: 50px;
+  }
+  
+  input {
+    text-align: center;
+    font-size: 18px;
+  }
+  
+  .text-input:focus {
+    outline: none;
+  }
+  
+  .text-input:focus::placeholder {
+    color: transparent;
+  }
+  
+  .login-input {
+    background-color: var(--2th-color);
+    color: white;
+    font-weight: 550;
+    font-size: 18px;
+  }
+
+  .invalid {
+    border: 1.5px solid red;
+    border-radius: 8px;
+  }
+
+  .invalid::placeholder {
+    color: red;
+  }
+
+  label {
+    color: red;
+  }
+
+  .form-input {
+    display:flex;
+    flex-direction: column;
+    position: relative;
+  }
+  
+  .google-login {
+    background: #1890ff;
+    color: white; }
+  
+  .forgot-password {
+    position: relative;
+    background: transparent;
+    border: none;
+    border-radius: 0px;
+    border-bottom: 1.5px solid rgba(0, 0, 0, 0.5);
+    height: 30px;
+    width: 100%;
+  }
+
+  .forgot-password > u {
+    padding: 10px;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    align-self: center;
+    justify-self: center;
+  }
+  

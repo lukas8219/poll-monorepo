@@ -1,0 +1,36 @@
+version: "3.1"
+
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    container_name: postgres
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+    ports:
+      - ${DB_PORT}:5432
+
+  pgAdmin:
+    image: dpage/pgadmin4
+    restart: always
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "email@email.com"
+      PGADMIN_DEFAULT_PASSWORD: "1234"
+    depends_on:
+      - "db"
+    ports:
+      - 80:80
+  web:
+    build: ./
+    command: npm run start:compose
+    depends_on:
+      - "db"
+    environment:
+      - DB_HOST=db
+    ports:
+      - 4200:4200
+      - 8080:8080
+    volumes:
+      - ./:/code/

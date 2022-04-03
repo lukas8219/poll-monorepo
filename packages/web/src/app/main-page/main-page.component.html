@@ -1,0 +1,17 @@
+<style>
+    .main-page{
+        width: 75vw;
+        height: 100%;
+        background-color: white;
+        display: grid;
+        grid-template-rows: 7% 93%;
+    }
+
+    app-nav-bar {
+        height: 100%;
+    }
+</style>
+<main class="main-page">
+    <app-nav-bar></app-nav-bar>
+    <section class="content"><button (click)="openAlert()">Alerta</button></section>
+</main>
