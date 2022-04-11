@@ -1,7 +1,8 @@
 <app-alert></app-alert>
-<div class="login">
+<div class="h-100 w-100 d-flex justify-content-center align-items-center">
   <app-login-page *ngIf="!authenticated"></app-login-page>
-</div>
-<div>
-  <app-main-page *ngIf="authenticated"></app-main-page>
+  <app-main-page
+    class="h-100 w-100 align-self-start"
+    *ngIf="authenticated"
+  ></app-main-page>
 </div>

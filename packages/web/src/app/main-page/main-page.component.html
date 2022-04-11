@@ -1,17 +1,9 @@
-<style>
-    .main-page{
-        width: 75vw;
-        height: 100%;
-        background-color: white;
-        display: grid;
-        grid-template-rows: 7% 93%;
-    }
-
-    app-nav-bar {
-        height: 100%;
-    }
-</style>
-<main class="main-page">
-    <app-nav-bar></app-nav-bar>
-    <section class="content"><button (click)="openAlert()">Alerta</button></section>
+<main class="container h-100 w-100 flex-column">
+  <app-nav-bar class="col-12 shadow-lg h-25"></app-nav-bar>
+  <section
+    class="content col-12 bg-light justify-content-center"
+    style="height: 95% !important"
+  >
+    <app-list> </app-list>
+  </section>
 </main>

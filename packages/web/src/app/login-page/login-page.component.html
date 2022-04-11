@@ -1,21 +1,52 @@
 <div class="container">
-    <span class="title"> Login </span>
-    <form class="form" [formGroup]="loginForm" (ngSubmit)="logIn()">
-      <div class="form-input">
-        <input formControlName="email" [ngClass]="getClassName('text-input', 'email')" type="email" placeholder="Insira seu email" />
-        <label for="email" *ngIf="hasErrors('email')"> {{ getError('email') }} </label>
+  <p class="col-12 text-center pt-3 text-white font-weight-bold fs-4 text">
+    Login
+  </p>
+  <div class="row bg-white p-2 rounded">
+    <mdb-form-control class="col-12" [formGroup]="loginForm">
+      <div class="col-12 my-2">
+        <input
+          formControlName="email"
+          type="email"
+          placeholder="Insira seu email"
+          mdbInput
+          class="form-control"
+        />
+        <label
+          for="email"
+          *ngIf="hasErrors('email')"
+          class="form-label text-danger"
+        >
+          {{ getError("email") }}
+        </label>
       </div>
-      <div class="form-input">
-        <input formControlName="password" [ngClass]="getClassName('text-input', 'password')" type="password" placeholder="Insira sua senha" />
-        <label for="password" *ngIf="hasErrors('password')"> {{ getError('password') }} </label>
+      <div class="col-12">
+        <input
+          formControlName="password"
+          mdbInput
+          type="password"
+          placeholder="Insira sua senha"
+          class="form-control"
+        />
+        <label
+          for="password"
+          *ngIf="hasErrors('password')"
+          class="form-label text-danger"
+        >
+          {{ getError("password") }}
+        </label>
       </div>
-      <button class="login-input" type="submit"><span>Entrar</span></button>
-      <button class="forgot-password">
-        <u>Esqueci a Senha</u>
-      </button>
-      <button class="google-login" type="submit">
-        <span>Entre com sua Conta Google</span>
-      </button>
-    </form>
+      <div class="col-12 d-flex flex-column py-2">
+        <button class="btn btn-primary my-1" type="submit" (click)="logIn()">
+          <span>Entrar</span>
+        </button>
+        <button class="btn btn-transparent border-bottom rounded-0 my-1">
+          <u>Esqueci a Senha</u>
+        </button>
+        <button class="btn btn-primary my-1" type="submit">
+          <span>Entre com sua Conta Google</span>
+        </button>
+      </div>
+    </mdb-form-control>
   </div>
-  
+</div>
