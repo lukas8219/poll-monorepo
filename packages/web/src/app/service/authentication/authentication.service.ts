@@ -7,9 +7,9 @@ import { AlertService } from '../alert/alert.service';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor(private http: HttpClient, private alert : AlertService) {}
+  constructor(private http: HttpClient, private alert: AlertService) {}
 
-  authenticate(data: any, form : FormGroup) {
+  authenticate(data: any, form: FormGroup) {
     return this.http
       .post<LoginData>('http://localhost:8080/v1/authenticate', data, {})
       .subscribe({
@@ -19,25 +19,29 @@ export class AuthenticationService {
           localStorage.setItem('token', JSON.stringify(token));
         },
         error: (response) => {
-          const error : Error = response.error;
-
-          if(error.statusCode === 400){
-            for(const err  of error.message ){
+          const error: Error = response.error;
+          debugger;
+          if (error.statusCode === 400) {
+            for (const err of error.message) {
               const field = form.get(err.property);
               field?.setErrors({
-                validation: err.message
+                validation: err.message,
               });
             }
           }
 
-          if(error.statusCode === 422){
-            this.alert.alert(error.message as unknown as  string);
+          if (error.statusCode === 422) {
+            this.alert.alert(error.message as unknown as string);
           }
-        }
+        },
       });
   }
-}
 
+  getToken(): string {
+    const storageData = localStorage.getItem('token');
+    return JSON.parse(storageData || '{}');
+  }
+}
 const VALIDATION_KEY = 'validation';
 export { VALIDATION_KEY };
 
@@ -63,6 +67,6 @@ interface ValidationErrorMessage {
 
 interface Error {
   statusCode: number;
-  message: ValidationErrorMessage[]
+  message: ValidationErrorMessage[];
   error: string;
 }

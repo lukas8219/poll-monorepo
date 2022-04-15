@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PollService } from '../service/poll/poll.service';
 import { UserDTO, UserService } from '../service/user/user.service';
 
 @Component({
@@ -9,9 +10,20 @@ import { UserDTO, UserService } from '../service/user/user.service';
 export class ListComponent implements OnInit {
   public user: UserDTO;
 
-  constructor(private readonly userService: UserService) {
+  public entries: any;
+
+  constructor(
+    userService: UserService,
+    private readonly pollService: PollService
+  ) {
     this.user = userService.getUser();
   }
 
-  ngOnInit(): void {}
+  async ngOnInit(): Promise<void> {
+    this.entries = (await this.pollService.getPollList()) || [];
+
+    this.pollService.subscribe(async (poll) => {
+      this.entries = await poll;
+    });
+  }
 }

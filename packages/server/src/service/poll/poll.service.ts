@@ -1,14 +1,17 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { NotFoundError } from 'rxjs';
 import { CreatePollDTO, PollDTO } from 'src/data/poll.dto';
 import { UserPrincipal } from 'src/decorators/principal';
+import { PollAttributes } from 'src/model/poll.model';
 import { PollRepository } from 'src/repository/poll.repository';
 
 @Injectable()
 export class PollService {
   constructor(private repository: PollRepository) {}
 
-  async save(poll: CreatePollDTO, userPrincipal : UserPrincipal): Promise<PollDTO> {
+  async save(
+    poll: CreatePollDTO,
+    userPrincipal: UserPrincipal,
+  ): Promise<PollDTO> {
     return this.repository.save({
       ...poll,
       createdBy: userPrincipal.id,
@@ -16,8 +19,9 @@ export class PollService {
     });
   }
 
-  async getAll(): Promise<PollDTO[]> {
-    return this.repository.findAll();
+  async getAll(): Promise<any> {
+    const data = await this.repository.findAll();
+    return data;
   }
 
   async getById(id: number): Promise<PollDTO> {
@@ -25,7 +29,7 @@ export class PollService {
     if (poll) {
       return poll;
     } else {
-      throw new NotFoundException("poll.not.found");
+      throw new NotFoundException('poll.not.found');
     }
   }
 }

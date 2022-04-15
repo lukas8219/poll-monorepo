@@ -1,11 +1,14 @@
-import { ShouldNotBeEmpty, ShouldContainText } from "src/validation/validationDelegate";
+import {
+  ShouldNotBeEmpty,
+  ShouldContainText,
+} from 'src/validation/validationDelegate';
 
 export class CreatePollDTO {
-  @ShouldNotBeEmpty("poll.create.subject.notEmpty")
+  @ShouldNotBeEmpty('poll.create.subject.notEmpty')
   subject: string;
-  @ShouldNotBeEmpty("poll.create.description.notEmpty")
+  @ShouldContainText('poll.create.description.notEmpty')
   description: string;
-  @ShouldContainText("poll.create.expiresAt.notNull")
+  @ShouldContainText('poll.create.expiresAt.notNull')
   expiresAt: Date;
 }
 

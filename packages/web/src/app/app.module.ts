@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainPageComponent } from './main-page/main-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AlertComponent } from './alert/alert.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -26,6 +26,9 @@ import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
 import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 import { ListComponent } from './list/list.component';
+import { ListEntryComponent } from './list/list-entry.component';
+import { PollResultComponent } from './poll-result/poll-result.component';
+import { AuthenticationInterceptor } from './interceptors/auth.interceptors';
 
 @NgModule({
   declarations: [
@@ -35,6 +38,8 @@ import { ListComponent } from './list/list.component';
     NavBarComponent,
     AlertComponent,
     ListComponent,
+    PollResultComponent,
+    ListEntryComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +64,13 @@ import { ListComponent } from './list/list.component';
     MdbTooltipModule,
     MdbValidationModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthenticationInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

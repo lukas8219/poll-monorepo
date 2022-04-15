@@ -6,20 +6,21 @@ import { EncryptionService } from './encryption.service';
 
 @Injectable()
 export class AuthenticationService {
-
   constructor(
     private userService: UserService,
     private jwtService: JwtService,
-    private encrypter : EncryptionService
+    private encrypter: EncryptionService,
   ) {}
 
   async authenticate(body: AuthenticationDTO): Promise<any> {
     const user = await this.validateUser(body.email, body.password);
     if (user) {
-      const { email, id } = user;
-      return this.login({ email, id });
+      const { name, email, id } = user;
+      return this.login({ name, email, id });
     } else {
-      throw new UnprocessableEntityException('user.not.found.or.password.wrong');
+      throw new UnprocessableEntityException(
+        'user.not.found.or.password.wrong',
+      );
     }
   }
 
@@ -30,8 +31,9 @@ export class AuthenticationService {
     const user = await this.userService.findUserByEmail(username);
     const encryptedInput = this.encrypter.encrypt(password);
     if (user && user.password === encryptedInput) {
-      const { email, id } = user;
+      const { name, email, id } = user;
       return {
+        name,
         email,
         id,
       };
@@ -39,14 +41,15 @@ export class AuthenticationService {
     return null;
   }
 
-  async login(user: AuthenticatedUserDTO) {
+  async login({ name, email, id }: AuthenticatedUserDTO) {
     const jwtPayload = {
-      email: user.email,
-      id: user.id,
+      name,
+      id,
+      email,
     };
     return {
       token: this.jwtService.sign(jwtPayload),
-      user: jwtPayload
+      user: jwtPayload,
     };
   }
 }
@@ -54,4 +57,5 @@ export class AuthenticationService {
 interface AuthenticatedUserDTO {
   id: number;
   email: string;
+  name: string;
 }
