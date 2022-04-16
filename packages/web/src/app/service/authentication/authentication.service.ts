@@ -20,7 +20,6 @@ export class AuthenticationService {
         },
         error: (response) => {
           const error: Error = response.error;
-          debugger;
           if (error.statusCode === 400) {
             for (const err of error.message) {
               const field = form.get(err.property);
